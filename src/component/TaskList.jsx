@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import TaskCard from "./TaskCard";
 
 const TaskList = () => {
-  const [show, setShow] = useState(true);
   const [newTask, setNewTask] = useState();
   const [tasks, setTasks] = useState([
     { id: 222, name: "Learning React", complete: true },
@@ -36,8 +35,8 @@ const TaskList = () => {
 
   return (
     <>
-      <h1>Task list</h1>
-      <div className="box">
+      {/* <h1>Task list</h1> */}
+      {/* <div className="box">
         <input
           type="text"
           value={newTask}
@@ -47,20 +46,16 @@ const TaskList = () => {
           Add
         </button>
         <br />
-      </div>
-      <button className="trigger show-btn" onClick={() => setShow(!show)}>
-        Show
-      </button>
+      </div> */}
       <ul>
-        {show &&
-          tasks.map((task) => (
-            <TaskCard
-              key={task.id}
-              task={task}
-              handleDelete={handleDelete}
-              handleComplete={handleComplete}
-            />
-          ))}
+        {tasks.map((task) => (
+          <TaskCard
+            key={task.id}
+            task={task}
+            handleDelete={handleDelete}
+            handleComplete={handleComplete}
+          />
+        ))}
       </ul>
     </>
   );
