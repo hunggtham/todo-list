@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from "react";
 import TaskList from "./TaskList";
+import styled from "styled-components";
+import {
+  BoxContainer,
+  ButtonTrigger,
+  StyledInput,
+  StyledTitle,
+} from "./CommonStyle";
+
+const StyledAddNewList = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`;
 
 const AddNewList = () => {
   const [title, setTitle] = useState("");
@@ -41,22 +53,20 @@ const AddNewList = () => {
     localStorage.removeItem(`tasks_${index}`);
   };
   return (
-    <>
-      <h1>Task list</h1>
-      <div className="box">
-        <input
+    <StyledAddNewList>
+      <StyledTitle>Task list</StyledTitle>
+      <BoxContainer>
+        <StyledInput
           type="text"
           value={title}
+          placeholder="Add new Task List"
           onChange={(e) => {
             setTitle(e.target.value);
           }}
-          placeholder="Add new Task List"
         />
-        <button className="trigger" onClick={handleAddList}>
-          Add
-        </button>
+        <ButtonTrigger onClick={handleAddList}>Add</ButtonTrigger>
         <br />
-      </div>
+      </BoxContainer>
       {/* render all list of to do list */}
       {/* {lists.map((list) => list)} */}
       {/* 
@@ -77,7 +87,7 @@ const AddNewList = () => {
             setLists={setLists}
           />
         ))}
-    </>
+    </StyledAddNewList>
   );
 };
 

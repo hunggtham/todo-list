@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
+import { ButtonDelete, StyleLi, StyledTypography } from "./CommonStyle";
 
 const TaskCard = (props) => {
   const { task, handleDeleteTask, handleComplete } = props;
@@ -7,15 +8,17 @@ const TaskCard = (props) => {
   const handleCompleteTask = () => {
     handleComplete(task.id);
   };
-
+  /* adding time counter */
   return (
-    <li className={task.complete ? "completed" : "incomplete"}>
-      <span onClick={handleCompleteTask}>{task.name}</span>
-      {/* adding time counter */}
-      <button className="delete" onClick={() => handleDeleteTask(task.id)}>
-        x
-      </button>
-    </li>
+    <>
+      <StyleLi completed={task.complete}>
+        <StyledTypography onClick={handleCompleteTask}>
+          {task.id} - {task.name}
+        </StyledTypography>
+
+        <ButtonDelete onClick={() => handleDeleteTask(task.id)}>x</ButtonDelete>
+      </StyleLi>
+    </>
   );
 };
 

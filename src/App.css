@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -40,16 +40,7 @@ ul {
 }
 
 li {
-  font: 16px;
-  list-style: none;
-  margin: 20px 5px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  border-radius: 5px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
+ 
 }
 
 li.completed {
@@ -134,4 +125,4 @@ ul > input {
   display: flex;
   justify-content: center;
   color: red;
-}
+} */

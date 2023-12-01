@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from "react";
 import TaskCard from "./TaskCard";
+import styled from "styled-components";
+import {
+  BoxContainer,
+  ButtonDelete,
+  ButtonTrigger,
+  StyledInput,
+  StyledTitle,
+} from "./CommonStyle";
+
+const StyledExtendedComponent = styled(ButtonDelete)`
+  position: relative;
+  right: 10px;
+`;
 
 const TaskList = (props) => {
   const { title, handleDeleteList, listIndex } = props;
@@ -43,19 +56,17 @@ const TaskList = (props) => {
 
   return (
     <>
-      <ul>
-        <p className="tasklist-title">{title}</p>
-        <button className="delete" onClick={onDeleteList}>
+      <BoxContainer style={{ potition: "absolute" }}>
+        <StyledTitle>{title}</StyledTitle>
+        <StyledExtendedComponent onClick={onDeleteList}>
           x
-        </button>
-        <input
+        </StyledExtendedComponent>
+        <StyledInput
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
         />
-        <button className="trigger" onClick={handleAdd}>
-          Add
-        </button>
+        <ButtonTrigger onClick={handleAdd}>Add</ButtonTrigger>
         {tasks.map((task) => (
           <TaskCard
             key={task.id}
@@ -64,7 +75,7 @@ const TaskList = (props) => {
             handleComplete={handleComplete}
           />
         ))}
-      </ul>
+      </BoxContainer>
     </>
   );
 };
