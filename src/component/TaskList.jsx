@@ -3,14 +3,8 @@ import TaskCard from "./TaskCard";
 
 const TaskList = (props) => {
   const { title, handleDeleteList, listIndex } = props;
-
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState(() => {
-    // [
-    //   { id: 222, name: "Learning React", complete: true },
-    //   { id: 333, name: "Practice React", complete: false },
-    //   { id: 444, name: "Working with React", complete: true },
-    // ]
     const storedTasks = localStorage.getItem(`tasks_${listIndex}`);
     return storedTasks ? JSON.parse(storedTasks) : [];
   });
@@ -19,12 +13,12 @@ const TaskList = (props) => {
     localStorage.setItem(`tasks_${listIndex}`, JSON.stringify(tasks));
   }, [tasks, listIndex]);
 
-  function handleDelete(id) {
+  function handleDeleteTask(id) {
     setTasks(tasks.filter((task) => task.id !== id));
   }
-
   function onDeleteList() {
     handleDeleteList(listIndex);
+    localStorage.removeItem(`tasks_${listIndex}`);
   }
 
   function handleComplete(id) {
@@ -38,7 +32,7 @@ const TaskList = (props) => {
   function handleAdd() {
     if (newTask.trim() !== "") {
       const newTaskObj = {
-        id: Date.now(),
+        id: Math.floor(Math.random() * 100),
         name: newTask,
         complete: false,
       };
@@ -66,7 +60,7 @@ const TaskList = (props) => {
           <TaskCard
             key={task.id}
             task={task}
-            handleDelete={handleDelete}
+            handleDeleteTask={handleDeleteTask}
             handleComplete={handleComplete}
           />
         ))}

@@ -2,7 +2,7 @@
 import React from "react";
 
 const TaskCard = (props) => {
-  const { task, handleDelete, handleComplete } = props;
+  const { task, handleDeleteTask, handleComplete } = props;
 
   const handleCompleteTask = () => {
     handleComplete(task.id);
@@ -12,7 +12,7 @@ const TaskCard = (props) => {
     <li className={task.complete ? "completed" : "incomplete"}>
       <span onClick={handleCompleteTask}>{task.name}</span>
       {/* adding time counter */}
-      <button className="delete" onClick={() => handleDelete(task.id)}>
+      <button className="delete" onClick={() => handleDeleteTask(task.id)}>
         x
       </button>
     </li>
