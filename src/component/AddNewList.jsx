@@ -8,9 +8,17 @@ import {
   StyledTitle,
 } from "./CommonStyle";
 
+const ConfigBoxContainer = styled(BoxContainer)`
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-bottom: 20px;
+`;
+
 const StyledAddNewList = styled.div`
-  text-align: center;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 `;
 
 const AddNewList = () => {
@@ -34,16 +42,18 @@ const AddNewList = () => {
     //     listIndex={updatedLists.length}
     //   />
     // );
-    const newList = {
-      key: updatedLists.length,
-      props: {
-        title,
-        handleDeleteList: handleDeleteList(updatedLists.length),
-        listIndex: updatedLists.length,
-      },
-    };
-    setLists([...updatedLists, newList]);
-    setTitle("");
+    if (title.trim() !== "") {
+      const newList = {
+        key: updatedLists.length,
+        props: {
+          title,
+          handleDeleteList: handleDeleteList(updatedLists.length),
+          listIndex: updatedLists.length,
+        },
+      };
+      setLists([...updatedLists, newList]);
+      setTitle("");
+    }
   };
 
   const handleDeleteList = (index) => {
@@ -54,19 +64,22 @@ const AddNewList = () => {
   };
   return (
     <StyledAddNewList>
-      <StyledTitle>Task list</StyledTitle>
-      <BoxContainer>
-        <StyledInput
-          type="text"
-          value={title}
-          placeholder="Add new Task List"
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-        <ButtonTrigger onClick={handleAddList}>Add</ButtonTrigger>
+      <ConfigBoxContainer>
+        <StyledTitle>Task list</StyledTitle>
+        <div>
+          <StyledInput
+            type="text"
+            value={title}
+            placeholder="Add new Task List"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+          <ButtonTrigger onClick={handleAddList}>Add</ButtonTrigger>
+        </div>
+
         <br />
-      </BoxContainer>
+      </ConfigBoxContainer>
       {/* render all list of to do list */}
       {/* {lists.map((list) => list)} */}
       {/* 
@@ -77,16 +90,26 @@ const AddNewList = () => {
           listIndex: index,
         })
       )} */}
-      {lists &&
-        lists.map((list, index) => (
-          <TaskList
-            key={index}
-            title={list.props.title}
-            handleDeleteList={() => handleDeleteList(index)}
-            listIndex={index}
-            setLists={setLists}
-          />
-        ))}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          gap: "20px",
+          // justifyContent: "center",
+        }}
+      >
+        {lists &&
+          lists.map((list, index) => (
+            <TaskList
+              key={index}
+              title={list.props.title}
+              handleDeleteList={() => handleDeleteList(index)}
+              listIndex={index}
+              setLists={setLists}
+            />
+          ))}
+      </div>
     </StyledAddNewList>
   );
 };

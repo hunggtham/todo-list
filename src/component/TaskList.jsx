@@ -9,8 +9,9 @@ import {
   StyledTitle,
 } from "./CommonStyle";
 
-const StyledExtendedComponent = styled(ButtonDelete)`
-  position: relative;
+const ConfigButtonDelete = styled(ButtonDelete)`
+  position: absolute;
+  top: 10px;
   right: 10px;
 `;
 
@@ -56,14 +57,13 @@ const TaskList = (props) => {
 
   return (
     <>
-      <BoxContainer style={{ potition: "absolute" }}>
+      <BoxContainer style={{ position: "relative" }}>
         <StyledTitle>{title}</StyledTitle>
-        <StyledExtendedComponent onClick={onDeleteList}>
-          x
-        </StyledExtendedComponent>
+        <ConfigButtonDelete onClick={onDeleteList}>x</ConfigButtonDelete>
         <StyledInput
           type="text"
           value={newTask}
+          placeholder="Add new task"
           onChange={(e) => setNewTask(e.target.value)}
         />
         <ButtonTrigger onClick={handleAdd}>Add</ButtonTrigger>

@@ -10,7 +10,7 @@ export const theme = {
 };
 export const BoxContainer = styled.div`
   width: 400px;
-  margin: 20px auto;
+  margin: 20px 10px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   padding: 20px 5px;
   border: 2px solid #3b3737;
@@ -37,7 +37,7 @@ export const ButtonDelete = styled.button`
 
 export const StyledInput = styled.input`
   width: 300px;
-  margin: 10px 0;
+  margin: 10px 10px;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.borderColor};
   border-radius: 5px;

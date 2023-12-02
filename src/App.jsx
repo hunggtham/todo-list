@@ -1,16 +1,17 @@
 import "./App.css";
 import React from "react";
 import Header from "./component/Header";
-import TaskList from "./component/TaskList";
 import AddNewList from "./component/AddNewList";
+import styled from "styled-components";
+
+const AppContainer = styled.div``;
 
 function App() {
   return (
-    <div>
+    <AppContainer>
       <Header />
-      {/* <TaskList /> */}
       <AddNewList />
-    </div>
+    </AppContainer>
   );
 }
 
