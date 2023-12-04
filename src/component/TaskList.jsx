@@ -8,6 +8,7 @@ import {
   StyledInput,
   StyledTitle,
 } from "./CommonStyle";
+import { toast } from "react-toastify";
 
 const ConfigButtonDelete = styled(ButtonDelete)`
   position: absolute;
@@ -29,10 +30,10 @@ const TaskList = (props) => {
 
   function handleDeleteTask(id) {
     setTasks(tasks.filter((task) => task.id !== id));
+    toast.info("Delete task complete");
   }
   function onDeleteList() {
     handleDeleteList(listIndex);
-    localStorage.removeItem(`tasks_${listIndex}`);
   }
 
   function handleComplete(id) {
@@ -51,8 +52,9 @@ const TaskList = (props) => {
         complete: false,
       };
       setTasks([...tasks, newTaskObj]);
+      setNewTask("");
+      toast.success("Add task complete!");
     }
-    setNewTask("");
   }
 
   return (

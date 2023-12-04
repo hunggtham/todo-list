@@ -3,6 +3,9 @@ import React from "react";
 import Header from "./component/Header";
 import AddNewList from "./component/AddNewList";
 import styled from "styled-components";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const AppContainer = styled.div`
   background-image: url("/background.jpg");
@@ -17,6 +20,7 @@ function App() {
     <AppContainer>
       <Header />
       <AddNewList />
+      <ToastContainer autoClose={600} />
     </AppContainer>
   );
 }

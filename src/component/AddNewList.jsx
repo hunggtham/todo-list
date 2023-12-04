@@ -3,10 +3,12 @@ import TaskList from "./TaskList";
 import styled from "styled-components";
 import {
   BoxContainer,
+  ButtonDelete,
   ButtonTrigger,
   StyledInput,
   StyledTitle,
 } from "./CommonStyle";
+import { toast } from "react-toastify";
 
 const ConfigBoxContainer = styled(BoxContainer)`
   display: flex;
@@ -47,12 +49,13 @@ const AddNewList = () => {
         key: updatedLists.length,
         props: {
           title,
-          handleDeleteList: handleDeleteList(updatedLists.length),
+          // handleDeleteList: handleDeleteList(updatedLists.length),
           listIndex: updatedLists.length,
         },
       };
       setLists([...updatedLists, newList]);
       setTitle("");
+      toast.success(`Add tasklist ${newList.props.title} success`);
     }
   };
 
@@ -61,6 +64,14 @@ const AddNewList = () => {
     updatedLists.splice(index, 1);
     setLists(updatedLists);
     localStorage.removeItem(`tasks_${index}`);
+    // console.log("lists in handleDeleteList ", lists);
+    toast.info(`Delete ${lists[index].props.title} Tasklist `);
+  };
+
+  const handleClearList = () => {
+    setLists([]);
+    localStorage.clear();
+    toast.info("Clear all complete!");
   };
   return (
     <StyledAddNewList>
@@ -77,6 +88,13 @@ const AddNewList = () => {
           />
           <ButtonTrigger onClick={handleAddList}>Add</ButtonTrigger>
         </div>
+
+        <ButtonDelete
+          onClick={handleClearList}
+          style={{ margin: "10px 5px 0px 10px" }}
+        >
+          Clear all
+        </ButtonDelete>
 
         <br />
       </ConfigBoxContainer>
@@ -103,10 +121,10 @@ const AddNewList = () => {
           lists.map((list, index) => (
             <TaskList
               key={index}
-              title={list.props.title}
-              handleDeleteList={() => handleDeleteList(index)}
               listIndex={index}
+              title={list.props.title}
               setLists={setLists}
+              handleDeleteList={() => handleDeleteList(index)}
             />
           ))}
       </div>
