@@ -3,8 +3,9 @@ import Logo from "../assets/react.svg";
 const Header = () => {
   return (
     <header>
-      <img src={Logo} alt="" />
-      <a href="/">Home</a>
+      <a href="/">
+        <img src={Logo} alt="" />
+      </a>
     </header>
   );
 };
